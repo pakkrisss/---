@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Приветственная страница с элементами div</title>
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.6; margin: 0; padding: 24px; background:#0b1220; color:#e5e7eb; }
+    #header, #main-content, .content-block { max-width: 900px; margin: 0 auto 16px; padding: 16px 18px; background:#ffffff; color:#0f172a; border:1px solid #e5e7eb; border-radius: 14px; }
+    #header h1 { margin: 0 0 6px; }
+    img { max-width: 100%; height: auto; border-radius: 10px; border:1px solid #e5e7eb; }
+    button { padding: 10px 14px; border: 0; border-radius: 999px; font-weight: 600; cursor: pointer; }
+    button:hover { filter: brightness(0.95); }
+
+    /* Анимация появления сообщения */
+    #greeting-message { min-height: 1.4em; }
+    .show { animation: fadeIn .6s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <!-- Элементы с уникальными идентификаторами -->
+  <div id="header">
+    <h1>Купите кимчи по самой вкусной цене!</h1>
+    <p>Этот блок создан, чтобы поднять вам настроение!</p>
+  </div>
+
+  <div id="main-content">
+    <h2>✨ Меню ✨</h2>
+    <p>✨ На этой странице вы можете заказать корейские деликатесы ✨</p>
+    <img src="https://via.placeholder.com/300x150/4CAF50/ffffff?text=Улыбнись!" alt="Позитивное изображение">
+  </div>
+
+  <!-- Элементы с общим классом -->
+  <div class="content-block">
+    <h3>Блок 1: Состав кимчи</h3>
+    <p>Кимчи классическое, состав:</p>
+    <ul>
+      <li>Капуста пекинская — 1 кочан</li>
+      <li>Паста острая &laquo;кочуджан&raquo; — 500 г</li>
+      <li>Соль и вода — по вкусу</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3>Блок 2: Калорийность</h3>
+    <p>На 100 г продукта: 15–25 ккал</p>
+  </div>
+
+  <div class="content-block">
+    <h3>Блок 3: Секретный компонент</h3>
+    <p>Нажмите кнопку ниже для получения секретного ингредиента:</p>
+    <button type="button" onclick="showGreeting()">Раскрыть секрет!</button>
+    <p id="greeting-message" aria-live="polite"></p>
+  </div>
+
+  <script>
+    function showGreeting() {
+      const greetings = [
+        "Любовь и щепотка души 🌞",
+        "Песня корейской бабушки ✨",
+        "Глутамат натрия",
+        "Ваша улыбка 😊",
+        "Корейские гены"
+      ];
+
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+      const el = document.getElementById("greeting-message");
+
+      // Обновляем текст и перезапускаем анимацию
+      el.textContent = randomGreeting;
+      el.classList.remove("show");
+      void el.offsetWidth; // форсируем рефлоу
+      el.classList.add("show");
+    }
+  </script>
+</body>
+</html>
